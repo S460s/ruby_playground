@@ -1,2 +1,2 @@
 # ruby_playground
-testing repo for ruby stuff
+Testing repo for ruby stuff
