@@ -1,16 +1,17 @@
-def shift!(num, shift, min, max)
-  num += shift
-  num = min + (num - (max + 1)) if num > max
-  num = max - ((min - 1) - shift) if num < min
+def shift(ascii, n, min, max)
+  ascii += n
+  ascii = min + (ascii - (max + 1)) if ascii > max
+  ascii = max - (min - (ascii + 1)) if ascii < min
+  ascii
 end
 
-def ceaser_cipher(message, shift)
+def ceaser_cipher(message, n)
   encrypted = ''
   message.each_byte do |ascii|
     if ascii.between?(65, 90)
-      shift!(ascii, shift, 65, 96)
+      ascii = shift(ascii, n, 65, 90)
     elsif ascii.between?(97, 122)
-      shift!(ascii, shift, 97, 122)
+      ascii = shift(ascii, n, 97, 122)
     end
     encrypted << ascii.chr
   end
@@ -19,7 +20,8 @@ end
 
 word = 'What a string!'
 
-encrypted = ceaser_cipher(word, 5)
-decrypted = ceaser_cipher(encrypted, -5)
+encrypted = ceaser_cipher(word, 6)
+decrypted = ceaser_cipher(encrypted, -6)
 
+p encrypted
 p decrypted
