@@ -6,7 +6,15 @@ answer = { 'down' => 1, 'go' => 1, 'going' => 1, 'how' => 2, 'howdy' => 1, 'it' 
 
 def substrings(string, dictionary)
   str_hash = Hash.new(0)
-  string.split.each  {|str| dictionary.each {|word| str.length.times {|i| (str.length - i).times {|j| str_hash[str[j, i + 1].downcase] += 1 if str[j, i + 1].downcase == word}}}}
+  string.split.each do |str|
+    dictionary.each do |word|
+      str.length.times do |i|
+        (str.length - i).times do |j|
+          str_hash[str[j, i + 1].downcase] += 1 if str[j, i + 1].downcase == word
+        end
+      end
+    end
+  end
   str_hash
 end
 
